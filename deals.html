@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deals - S & L Online Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 20px;
+}
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -2; /* Adjusted z-index */
+}
+
+/* Deal Card Styles */
+.deal-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.deal-title {
+    color: #3366ff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.deal-description {
+    color: #555;
+}
+
+.deal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Custom Navbar Styles */
+.custom-navbar, .dropdown-item {
+    padding: 0px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(45deg, rgba(33, 38, 42, 0.5), rgba(32, 28, 28, 0.5), rgba(23, 34, 28, 0.5), rgba(243, 156, 18, 0.5));
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s infinite;
+    backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+}
+
+/* Keyframe Animation for Navbar */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-width: 80px;
+    margin-right: 10px;
+    border-radius: 60%;
+}
+
+.navbar-brand span {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #3366ff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff9933;
+}
+
+.dropdown-menu {
+    border: 1px solid #3366ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #3366ff;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.navbar-nav.ml-auto {
+    padding-right: 20px;
+}
+
+.navbar-nav.ml-auto .nav-link {
+    color: #3366ff;
+}
+
+.navbar-nav.ml-auto .nav-link:hover {
+    color: #ff9933;
+}
+
+/* Styling for the links in the navbar */
+.navbar-nav .nav-link.bn5 {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link.bn5:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingbn5 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+/* Keyframe Animation for Navbar Links */
+@keyframes glowingbn5 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.navbar-nav .nav-link.bn5:active {
+    color: #000;
+}
+
+.navbar-nav .nav-link.bn5:active:after {
+    background: transparent;
+}
+
+.navbar-nav .nav-link.bn5:hover:before {
+    opacity: 1;
+}
+
+.navbar-nav .nav-link.bn5:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.text-dark {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    font-family: Arial, sans-serif; /* Adjust the font family as needed */
+    position: relative;
+    display: inline-block;
+}
+
+.text-dark span {
+    display: inline-block;
+    position: relative;
+}
+
+.text-dark span::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    color: transparent;
+    background-image: linear-gradient(45deg, #f06, #9f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
+/* Hover Effect */
+.deal-card:hover {
+    transform: scale(1.05);
+}
+
+/* Deals Header Styles */
+.deals-header {
+    padding: 20px;
+    color: rgb(252, 253, 253);
+    text-align: center;
+}
+
+.deals-header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.deals-header p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Hover effect for a subtle interaction */
+.deals-header:hover {
+    background-color: #292b2c;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-explore-deals {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ffcc00;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-explore-deals:hover {
+    background-color: #ff9900;
+}
+
+/* Deal Container Styles */
+.deal-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px;
+    max-height: 500px;
+}
+
+/* Individual Deal Styles */
+.deal-card {
+    width: 300px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.deal-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.deal-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.deal-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Gradient Animation for Hover Effect */
+.deal-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(2, 39, 65, 0.8), rgba(29, 28, 28, 0.8), rgba(100, 128, 114, 0.8), rgba(164, 137, 94, 0.8));
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s infinite;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+/* Keyframe Animation for Gradient Effect */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <video autoplay muted loop>
+        <source src="img/y2mate.com - shopping online  video background for WebSite_1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dark custom-navbar">
+        <div class="container-fluid border border m-2 p-2">
+            <a class="navbar-brand" href="#">
+                <img src="img/logoshop.jpg" alt="Company Logo">
+                <span class="text-dark">
+                    <span data-text="S">S</span>
+                    <span data-text="&">&nbsp;&</span>
+                    <span data-text="L">L</span>
+                    <span data-text="Online">Online</span>
+                    <span data-text="Shop">Shop</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="welcome.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="Shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="deals.html">Deals</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bn5" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Explore
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item bn5" href="fashion.html">Fashion</a></li>
+                            <li><a class="dropdown-item bn5" href="electronics.html">Electronics</a></li>
+                            <li><a class="dropdown-item bn5" href="home&living.html">Home & Living</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Centered Search Bar -->
+            <form class="d-flex mx-auto">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="container mt-3">
+                        <img src="img/cart.jpg" alt="Logo" class="img-fluid mb-1" style="max-width: 30%; border-radius: 80%;">
+                    </div>
+                    <h6><a class="nav-link bn5" href="Log-inPage.html">Log out</a></h6>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+   <!-- Deals Header -->
+   <div class="deals-header">
+    <h2 class="text-warning text-warning">Exclusive Deals</h2>
+    <p>Discover amazing offers and discounts on our featured products. Limited-time deals you don't want to miss!</p>
+    <a href="deals.html" class="btn btn-explore-deals">Explore Deals</a>
+</div>
+    
+    <!-- Example Deal Cards -->
+<div class="deal-container">
+<div class="deal-card">
+    <img src="img/summertech.jpg" alt="Summer Tech Extravaganza" class="deal-image">
+    <h3 class="deal-title text-dark">Summer Tech Extravaganza</h3>
+    <p class="deal-description text-light">Upgrade your summer with our exclusive tech deals! From smartwatches to headphones, enjoy discounts on the latest gadgets. Dive into the Summer Tech Extravaganza and elevate your digital lifestyle. Limited stock available, so grab your favorites now!</p>
+    <a href="summer_tech_products.html" class="btn btn-outline-warning">Shop Now</a>
+</div>
+
+<div class="deal-card">
+    <img src="img/home.essentails.jpg" alt="Home Essentials Bonanza" class="deal-image">
+    <h3 class="deal-title text-dark">Home Essentials Bonanza</h3>
+    <p class="deal-description text-light">Revamp your living space with our Home Essentials Bonanza! Discover great deals on furniture, decor, and more. Whether you're redecorating or adding finishing touches, this sale has everything you need. Don't miss out on transforming your home at unbeatable prices!</p>
+    <a href="home_essentials.html" class="btn btn-outline-warning">Shop Now</a>
+</div>
+
+<div class="deal-card">
+    <img src="img/fitnessgear.jpg" alt="Fitness Gear Flash Sale" class="deal-image">
+    <h3 class="deal-title text-dark">Fitness Gear Flash Sale</h3>
+    <p class="deal-description text-light">Get ready to break a sweat with our Fitness Gear Flash Sale! Shop high-quality fitness equipment, activewear, and accessories at discounted prices. Whether you're a fitness enthusiast or just starting your journey, this sale has the gear to keep you motivated. Grab your workout essentials now!</p>
+    <a href="fitness_gear_sale.html" class="btn btn-outline-warning">Shop Now</a>
+</div>
+
+<div class="deal-card">
+    <img src="img/travel&tech.jpg" alt="Tech & Travel Combo" class="deal-image">
+    <h3 class="deal-title text-dark">Tech & Travel Combo</h3>
+    <p class="deal-description text-light">Combine tech and travel with our exclusive combo deals! From portable gadgets to travel accessories, make your journeys more enjoyable. Whether you're a tech-savvy traveler or looking for the perfect gift, explore the Tech & Travel Combo for unbeatable deals. Grab yours before you hit the road!</p>
+    <a href="tech_travel_combo.html" class="btn btn-outline-warning">Shop Now</a>
+</div>
+<div class="footer-section me-5">
+    <h3 class=" fw-bold text-dark ms-5 mt-5">Loading......</h3>
+    <!-- Loading Spinner -->
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div> 
+</div>
+</div>
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous">
+     </script>
+
+    <!-- Include your existing scripts and Bootstrap bundle script if necessary -->
+
+</body>
+</html>

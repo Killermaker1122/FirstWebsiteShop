@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Welcome to S&L Shop</title>
+    <style>
+        /* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: auto; /* Add scrollbar to the body */
+    position: relative;
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -1;
+}
+
+/* Navbar Styles */
+.custom-navbar, .dropdown-item {
+    padding: 0px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10px;
+    background: linear-gradient(45deg, rgba(43, 46, 48, 0.5), rgba(31, 29, 28, 0.5), rgba(9, 22, 15, 0.5), rgba(243, 156, 18, 0.5));
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s infinite;
+    backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+}
+
+/* Keyframe Animation for Navbar */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-width: 80px;
+    margin-right: 10px;
+    border-radius: 60%;
+}
+
+.navbar-brand span {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #3366ff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff9933;
+}
+
+.dropdown-menu {
+    border: 1px solid #3366ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #3366ff;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.navbar-nav.ml-auto {
+    padding-right: 20px;
+}
+
+.navbar-nav.ml-auto .nav-link {
+    color: #3366ff;
+}
+
+.navbar-nav.ml-auto .nav-link:hover {
+    color: #ff9933;
+}
+
+/* Styling for the links in the navbar */
+.navbar-nav .nav-link.bn5 {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link.bn5:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowingbn5 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+/* Keyframe Animation for Navbar Links */
+@keyframes glowingbn5 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.navbar-nav .nav-link.bn5:active {
+    color: #000;
+}
+
+.navbar-nav .nav-link.bn5:active:after {
+    background: transparent;
+}
+
+.navbar-nav .nav-link.bn5:hover:before {
+    opacity: 1;
+}
+
+.navbar-nav .nav-link.bn5:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #191919;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+/*Company Name styles*/
+.text-dark {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    font-family: Arial, sans-serif; /* Adjust the font family as needed */
+    position: relative;
+    display: inline-block;
+        }
+
+.text-dark span {
+    display: inline-block;
+    position: relative;
+        }
+
+.text-dark span::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    color: transparent;
+    background-image: linear-gradient(45deg, #f06, #9f6);
+    background-clip: text;
+   -webkit-background-clip: text;
+        }
+
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 80px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    color: #971212;
+    border-radius: 20px;
+    overflow: hidden;
+    background-size: 500% 500%;
+    animation: gradientAnimation 15s infinite;
+    backdrop-filter: blur(1px);
+}
+
+/* Styles for text inside .welcome-section */
+.welcome-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+/* Footer Styles */
+footer {
+    padding: 50px 0;
+}
+
+footer h5 {
+    color: #ff9933;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffcc66;
+}
+
+/* Quick Links Section */
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 12px;
+}
+
+/* Contact Info Section */
+footer .contact-info {
+    margin-top: 30px;
+}
+
+/* Copyright Section */
+footer .copyright {
+    margin-top: 30px;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+    }
+}
+
+/* Social Media Icons Styles */
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: block;
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+}
+
+.social-icons img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain the aspect ratio */
+    border-radius: 50%; /* For circular icons */
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2); /* Add a slight scale effect on hover */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop>
+        <source src="img/y2mate.com - shopping online  video background for WebSite_1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dark custom-navbar">
+        <div class="container-fluid border border m-2 p-2">
+            <a class="navbar-brand" href="#">
+                <img src="logoshop.jpg" alt="Company Logo">
+                <span class="text-dark">
+                    <span data-text="S">S</span>
+                    <span data-text="&">&nbsp;&</span>
+                    <span data-text="L">L</span>
+                    <span data-text="Online">Online</span>
+                    <span data-text="Shop">Shop</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="welcome.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="Shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="deals.html">Deals</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bn5" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Explore
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item bn5" href="fashion.html">Fashion</a></li>
+                            <li><a class="dropdown-item bn5" href="electronics.html">Electronics</a></li>
+                            <li><a class="dropdown-item bn5" href="home&living.html">Home & Living</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Centered Search Bar -->
+            <form class="d-flex mx-auto">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="container mt-3">
+                        <img src="cart.jpg" alt="Logo" class="img-fluid mb-1" style="max-width: 30%; border-radius: 80%;">
+                    </div>
+                    <h6><a class="nav-link bn5" href="Log-inPage.html">Log out</a></h6>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Logo Section -->
+<div class="logo-section text-center mt-5">
+    <img src="logoshop.jpg" alt="S & L Online Shop Logo" style="max-width: 200px; border-radius: 50px;">
+</div>
+
+    <div class="welcome-section " id="welcomeSection">
+      <h2>Welcome to S & L Online Shop!</h2>
+      <p>Discover amazing deals and a wide range of products just for you.</p>
+  </div>
+
+  <!-- Footer Section -->
+<footer class="bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5>About Us</h5>
+                <p>S & L is dedicated to providing high-quality products and excellent service to our customers. Explore our online store for the latest trends and exclusive deals.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="welcome.html">Home</a></li>
+                    <li><a href="Shop.html">Shop</a></li>
+                    <li><a href="deals.html">Deals</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="electronics.html">Electronics</a></li>
+                    <li><a href="home&living.html">Home & Living</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <h5>Contact Us</h5>
+                <p>Email: S&L2429@gmail.com</p>
+                <p>Phone: +63 (436) 987-3684</p>
+                <p>Address: 2429 Purok7, Buenavista, Bohol</p>
+                <h5>Follow us:</h5>
+
+                <!-- Social Media Icons with Images -->
+            <div class="social-icons justify-content-center">
+                <a href="#" target="_blank"><img src="img/th.jpg" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="img/th (1).jpg" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="img/th (2).jpg" alt="Instagram"></a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        <p>&copy; 2023 S & L Shop. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+        </script>
+       <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeTextColor(elementId) {
+            var element = document.getElementById(elementId);
+            var newColor = getRandomColor();
+
+            element.style.color = newColor;
+        }
+
+        // Change text color in the welcome section every 3 seconds
+        setInterval(function() {
+            changeTextColor('welcomeSection');
+        }, 3000);
+
+        // Change text color in the footer section every 3 seconds
+        setInterval(function() {
+            changeTextColor('footerSection');
+        }, 3000);
+    </script>
+</body>
+
+</html>

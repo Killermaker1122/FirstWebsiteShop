@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electronics - S & L Online Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+        }
+
+        .custom-navbar ,.dropdown-item {
+            padding: 0px;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            /* Gradient background animation */
+            background: linear-gradient(45deg, rgba(27, 31, 33, 0.5), rgba(29, 25, 25, 0.5), rgba(46, 204, 113, 0.5), rgba(243, 156, 18, 0.5));
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s infinite;
+            backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+        }
+
+        @keyframes gradientAnimation {
+              0% { background-position: 0% 50%; }
+              50% { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+
+        .navbar {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            max-width: 80px;
+            margin-right: 10px;
+            border-radius: 60%;
+        }
+
+        .navbar-brand span {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #eae7e7;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff9933;
+        }
+
+        .dropdown-menu {
+            border: 1px solid #0e2f8f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            color: #030381;
+        }
+
+        .dropdown-item:hover {
+            background-color: #17212b;
+        }
+
+        .navbar-nav.ml-auto {
+            padding-right: 20px;
+        }
+
+        .navbar-nav.ml-auto .nav-link {
+            color: #3366ff;
+        }
+
+        .navbar-nav.ml-auto .nav-link:hover {
+            color: #ff9933;
+        }
+
+        /* Add the style for the links in the navbar */
+        .navbar-nav .nav-link.bn5 {
+            padding: 0.6em 2em;
+            border: none;
+            outline: none;
+            color: rgb(255, 255, 255);
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link.bn5:before {
+            content: "";
+            background: linear-gradient(
+                45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000
+            );
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowingbn5 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowingbn5 {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .navbar-nav .nav-link.bn5:active {
+            color: #000;
+        }
+
+        .navbar-nav .nav-link.bn5:active:after {
+            background: transparent;
+        }
+
+        .navbar-nav .nav-link.bn5:hover:before {
+            opacity: 1;
+        }
+
+        .navbar-nav .nav-link.bn5:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #191919;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .text-dark {
+            font-size: 24px; /* Adjust the font size as needed */
+            font-weight: bold; /* Adjust the font weight as needed */
+            font-family: Arial, sans-serif; /* Adjust the font family as needed */
+            position: relative;
+            display: inline-block;
+        }
+
+        .text-dark span {
+            display: inline-block;
+            position: relative;
+        }
+
+        .text-dark span::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+            color: transparent;
+            background-image: linear-gradient(45deg, #f06, #9f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        /* Footer Styles */
+        footer {
+        background-color: #2c3e50; /* Dark background color */
+        color: #fff; /* Text color */
+        padding: 50px 0; /* Padding for better spacing */
+        }
+
+        footer h5 {
+        color: #ff9933; /* Heading color */
+        }
+
+        footer a {
+        color: #fff; /* Link color */
+        text-decoration: none; /* Remove underline from links */
+        }
+
+        footer a:hover {
+        color: #ffcc66; /* Link color on hover */
+        }
+
+        /* Quick Links Section */
+        footer ul {
+        list-style: none;
+        padding: 0;
+        }
+
+        footer ul li {
+        margin-bottom: 12px;
+        }
+
+        /* Contact Info Section */
+       footer .contact-info {
+       margin-top: 30px;
+       }
+
+       /* Copyright Section */
+      footer .copyright {
+       margin-top: 30px;
+       background-color: #34495e; /* Background color for the copyright section */
+       padding: 15px 0;
+       text-align: center;
+       }
+
+       /* Responsive Styling */
+       @media (max-width: 768px) {
+       footer {
+        text-align: center;
+       }
+
+       footer .col-lg-4 {
+        margin-bottom: 30px;
+         }
+       }
+
+        .coming-soon-container {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .coming-soon-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-heading {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0e2b4a;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-description {
+            font-size: 1.2rem;
+            color: #a7a7f4;
+            margin-bottom: 40px;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .countdown span {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .subscribe-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .subscribe-form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #872727;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .subscribe-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #060e16;
+            color: #f8f2f2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #d4d8dd;
+        }
+        .countdown {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .countdown span {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #b1f5ea;
+        }
+
+        /* Social Media Icons Styles */
+         .social-icons {
+           display: flex;
+           gap: 10px;
+           margin-top: 15px;
+        }
+
+         .social-icons a {
+           display: block;
+           width: 40px; /* Adjust the width as needed */
+           height: 40px; /* Adjust the height as needed */
+        }
+
+        .social-icons img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover; /* Maintain the aspect ratio */
+           border-radius: 50%; /* For circular icons */
+           transition: transform 0.3s ease-in-out;
+           }
+
+        .social-icons img:hover {
+           transform: scale(1.2); /* Add a slight scale effect on hover */
+         }
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <video autoplay muted loop>
+        <source src="img/y2mate.com - shopping online  video background for WebSite_1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-dark custom-navbar">
+        <div class="container-fluid border border m-2 p-2">
+            <a class="navbar-brand" href="#">
+                <img src="img/logoshop.jpg" alt="Company Logo">
+                <span class="text-dark">
+                    <span data-text="S">S</span>
+                    <span data-text="&">&nbsp;&</span>
+                    <span data-text="L">L</span>
+                    <span data-text="Online">Online</span>
+                    <span data-text="Shop">Shop</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="welcome.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="Shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bn5" href="deals.html">Deals</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bn5" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Explore
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item bn5" href="fashion.html">Fashion</a></li>
+                            <li><a class="dropdown-item bn5" href="electronics.html">Electronics</a></li>
+                            <li><a class="dropdown-item bn5" href="home&living.html">Home & Living</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Centered Search Bar -->
+            <form class="d-flex mx-auto">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="container mt-3">
+        <img src="electronics.jpg" alt="Electronics logo" class="coming-soon-logo">
+                        <img src="img/cart.jpg" alt="Logo" class="img-fluid mb-1" style="max-width: 30%; border-radius: 80%;">
+                    </div>
+                    <h6><a class="nav-link bn5" href="Log-inPage.html">Log out</a></h6>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="container coming-soon-container">
+        <img src="img/electronics.jpg" alt="Electronics logo" class="coming-soon-logo">
+        <h2 class="coming-soon-heading">Electronics - Coming Soon</h2>
+        <p class="coming-soon-description">We are preparing a curated collection of Electronics
+            products. Stay tuned for the grand opening!</p>
+            <div class="countdown" id="countdown">
+                <span id="days">17</span> Days
+                <span id="hours">12</span> Hours
+                <span id="minutes">13</span> Minutes
+                <span id="seconds">51</span> Seconds
+            </div>
+    
+        <form class="subscribe-form">
+            <input type="email" placeholder="Enter your email to get notified" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+  <!-- Footer Section -->
+<footer class="bg-dark text-light py-4">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5>About Us</h5>
+                <p>S & L is dedicated to providing high-quality products and excellent service to our customers. Explore our online store for the latest trends and exclusive deals.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="welcome.html">Home</a></li>
+                    <li><a href="Shop.html">Shop</a></li>
+                    <li><a href="deals.html">Deals</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li><a href="electronics.html">Electronics</a></li>
+                    <li><a href="home&living.html">Home & Living</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <h5>Contact Us</h5>
+                <p>Email: S&L2429@gmail.com</p>
+                <p>Phone: +63 (436) 987-3684</p>
+                <p>Address: 2429 Purok7, Buenavista, Bohol</p>
+                <h5>Follow us:</h5>
+                
+                <!-- Social Media Icons with Images -->
+            <div class="social-icons justify-content-center">
+                <a href="" target="_blank"><img src="img/th.jpg" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="img/th (1).jpg" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="img/th (2).jpg" alt="Instagram"></a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        <p>&copy; 2023 S & L Shop. All rights reserved.</p>
+    </div>
+</footer>
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+     crossorigin="anonymous">
+     </script>
+     <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 31, 2023 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function () {
+            // Get the current date and time
+            var now = new Date().getTime();
+
+            // Calculate the remaining time
+            var distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Format time to add leading zero if needed
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+    </script>
+
+    <!-- Include your existing scripts and Bootstrap bundle script if necessary -->
+
+</body>
+</html>
